@@ -55,7 +55,15 @@ void onMqttConnect(bool sessionPresent)
 void onMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties properties, size_t len, size_t index, size_t total) {
 
   DEBUG_PRINT("MQTT msg: ");
+  if( topic == NULL ) {
+    DEBUG_PRINTLN("#### topic is null -> exit ");
+    return;
+  }
   DEBUG_PRINTLN(topic);
+  if(!payload) {
+    DEBUG_PRINTLN("#### payload is null -> exit "); 
+    return;
+  }
   DEBUG_PRINTLN(payload);
 
   //no need to check the topic because we only get topics we are subscribed to
